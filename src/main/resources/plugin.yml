@@ -1,0 +1,11 @@
+name: Seller
+version: 1.0
+main: ch.tmrtrsv.seller.Seller
+depend: [ Vault ]
+api-version: 1.16
+authors: [ Тимур ]
+website: t.me/tmrtrsvch
+commands:
+  seller:
+  sell:
+  buy:

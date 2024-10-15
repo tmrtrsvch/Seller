@@ -1,0 +1,56 @@
+#
+#              Seller v1.0
+#   	      Автор: Тимур
+#   	   Телеграм: @tmrtrsvch
+#
+# /seller reload (seller.reload) - Перезагрузить конфигурацию
+# /sell <предмет> <количество> (seller.use) - Продать предмет
+# /buy <предмет> <количество> (seller.use) - Купить предмет
+#
+
+messages:
+  no_permission: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУ Вас нет прав для выполнения данной команды'
+  reload_usage: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fИспользуйте: &#fff200/seller reload"
+  config_reloaded: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fКонфигурация успешно перезагружена!"
+  buy: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fВы успешно приобрели &#fff200{item} x{amount} &fза &#fff200{price} &#fff200&l&l$"
+  sell: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fВы успешно продали &#fff200{item} x{amount} &fза &#fff200{price} &#fff200&l&l$"
+  not_enough_money: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУ Вас недостаточно средств для покупки данного предмета'
+  inventory_full: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fВаш инвентарь переполнен, освободите место'
+  item_not_found: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fДанный предмет не найден у скупщика'
+  specify_item: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУкажите предмет для покупки/продажи"
+  no_item: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУ Вас нет данного предмета'
+  specify_amount: "&cПожалуйста, укажите количество предметов"
+
+items:
+  oak_log:
+    name: "Дубовое бревно"
+    price:
+      buy: 175
+      sell: 225
+  cobblestone:
+    name: "Булыжник"
+    price:
+      buy: 195
+      sell: 145
+  netherrack:
+    name: "Незерак"
+    price:
+      buy: 175
+      sell: 145
+  ender_stone:
+    name: "Эндерняк"
+    price:
+      buy: 225
+      sell: 175
+
+tab-completer:
+  items: # Настройка предложения предметов в командах /buy или /sell
+    enabled: true
+    mode: 1 # Режимы предложения: 1 - по материалам, 2 - по названиям из параметра name
+  amount:
+    enabled: true
+    numbers:
+      - 1
+      - 2
+      - 3
+      - 4
