@@ -19,6 +19,7 @@ public class Seller extends JavaPlugin {
     public void onEnable() {
         if (!this.setupEconomy()) {
             this.getServer().getPluginManager().disablePlugin(this);
+            this.sendNoEconomyManager();
             return;
         }
         this.loadConfig();
@@ -33,9 +34,15 @@ public class Seller extends JavaPlugin {
 
     private void sendCredit() {
         getLogger().info(Utils.color(""));
-        getLogger().info(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F021&#FF5301.&#FF48000"));
+        getLogger().info(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F021&#FF5301.&#FF48001"));
         getLogger().info(Utils.color("&f Автор: &#FB3908Т&#FC2B06и&#FD1D04м&#FE0E02у&#FF0000р"));
         getLogger().info(Utils.color("&f Телеграм: &#008DFF@&#0086FFt&#007FFFm&#0078FFr&#0071FFt&#006BFFr&#0064FFs&#005DFFv&#0056FFc&#004FFFh"));
+        getLogger().info(Utils.color(""));
+    }
+
+    private void sendNoEconomyManager() {
+        getLogger().info(Utils.color("&f Для работы плагина необходимо установить менеджер экономики"));
+        getLogger().info(Utils.color("&f Рекомендую &#FF8600E&#FF8900s&#FF8D00s&#FF9000e&#FF9400n&#FF9700t&#FF9B00i&#FF9E00a&#FFA200l&#FFA500s"));
         getLogger().info(Utils.color(""));
     }
 
