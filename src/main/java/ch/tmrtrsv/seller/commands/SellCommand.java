@@ -38,12 +38,6 @@ public class SellCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length < 2) {
-            String specifyAmountMessage = plugin.getPluginConfig().getString("messages.specify_amount", "Пожалуйста, укажите количество предметов.");
-            player.sendMessage(Utils.color(specifyAmountMessage));
-            return true;
-        }
-
         String itemName = args[0];
         ConfigurationSection itemConfig = SellerUtils.getItemConfig(plugin.getPluginConfig(), itemName);
 
@@ -54,27 +48,45 @@ public class SellCommand implements CommandExecutor {
         }
 
         Material material = Material.getMaterial(itemConfig.getName().toUpperCase());
-        String displayName = itemConfig.getString("name");
-        double price = itemConfig.getDouble("price.sell");
-        int sellQuantity;
-
-        try {
-            sellQuantity = Integer.parseInt(args[1]);
-        } catch (NumberFormatException e) {
-            String specifyAmountMessage = plugin.getPluginConfig().getString("messages.specify_amount", "Пожалуйста, укажите количество предметов.");
-            player.sendMessage(Utils.color(specifyAmountMessage));
+        if (material == null) {
+            String itemNotFoundMessage = plugin.getPluginConfig().getString("messages.item_not_found", "Item не найден.");
+            player.sendMessage(Utils.color(itemNotFoundMessage.replace("{item}", itemName)));
             return true;
         }
 
-        int itemCount = SellerUtils.countItem(player, material);
-        if (itemCount < sellQuantity) {
-            String noItemMessage = plugin.getPluginConfig().getString("messages.no_item", "У вас недостаточно предметов для продажи.");
-            player.sendMessage(Utils.color(noItemMessage));
-            return true;
+        String displayName = itemConfig.getString("name");
+        double price = itemConfig.getDouble("price.sell");
+
+        int sellQuantity;
+
+        if (args[1].equalsIgnoreCase("all")) {
+            sellQuantity = SellerUtils.countItem(player, material);
+            if (sellQuantity == 0) {
+                String noItemMessage = plugin.getPluginConfig().getString("messages.no_item", "У вас нет предметов для продажи.");
+                player.sendMessage(Utils.color(noItemMessage));
+                return true;
+            }
+        } else {
+            try {
+                sellQuantity = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                String specifyAmountMessage = plugin.getPluginConfig().getString("messages.specify_amount", "Пожалуйста, укажите количество предметов.");
+                player.sendMessage(Utils.color(specifyAmountMessage));
+                return true;
+            }
+
+            int itemCount = SellerUtils.countItem(player, material);
+            if (itemCount < sellQuantity) {
+                String noItemMessage = plugin.getPluginConfig().getString("messages.no_item", "У вас недостаточно предметов для продажи.");
+                player.sendMessage(Utils.color(noItemMessage));
+                return true;
+            }
         }
 
         double totalPrice = price * sellQuantity;
+
         plugin.getEconomy().depositPlayer(player, totalPrice);
+
         SellerUtils.removeItem(player, material, sellQuantity);
 
         String sellMessage = plugin.getPluginConfig().getString("messages.sell", "Вы успешно продали {amount} {item} за {price}.");

@@ -1,11 +1,12 @@
 #
-#              Seller v1.1
+#              Seller v2.0
 #   	      Автор: Тимур
 #   	   Телеграм: @tmrtrsvch
 #
-# /seller reload (seller.reload) - Перезагрузить конфигурацию
 # /buy <предмет> <количество> (seller.use) - Купить предмет
 # /sell <предмет> <количество> (seller.use) - Продать предмет
+# /autosell <предмет> (seller.autosell) - Поставить/снять предмет с авто-продажи
+# /seller reload (seller.reload) - Перезагрузить конфигурацию
 #
 
 #             Зависимости:
@@ -23,10 +24,13 @@ messages:
   inventory_full: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fВаш инвентарь переполнен, освободите место'
   item_not_found: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fДанный предмет не найден у скупщика'
   specify_item: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУкажите предмет для покупки/продажи"
-  no_item: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУ Вас нет данного предмета'
+  specify_autosell_item: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУкажите предмет для авто-продажи"
+  no_item: '&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fУ Вас нет/недостаточно данного предмета для продажи'
   specify_amount: "&cПожалуйста, укажите количество предметов"
+  autosell_item_removed: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fПредмет &#fff200{item} &fудалён из списка автопродажи"
+  autosell_item_added: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fПредмет &#fff200{item} &fдобавлен в список автопродажи"
 
-items:
+goods:
   oak_log:
     name: "Дубовое бревно"
     price:
@@ -48,8 +52,10 @@ items:
       buy: 225
       sell: 175
 
+autosell-delay: 30  # Задержка автопродажи в секундах
+
 tab-completer:
-  items: # Настройка предложения предметов в командах /buy или /sell
+  goods: # Настройка предложения предметов в командах /buy или /sell
     enabled: true
     mode: 1 # Режимы предложения: 1 - по материалам, 2 - по названиям из параметра name
   amount:

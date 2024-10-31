@@ -1,10 +1,15 @@
 package ch.tmrtrsv.seller;
 
+import ch.tmrtrsv.seller.commands.AutoSellCommand;
 import ch.tmrtrsv.seller.commands.BuyCommand;
 import ch.tmrtrsv.seller.commands.ReloadCommand;
 import ch.tmrtrsv.seller.commands.SellCommand;
+import ch.tmrtrsv.seller.tabcompleters.AutoSellTabCompleter;
+import ch.tmrtrsv.seller.tabcompleters.BuyTabCompleter;
+import ch.tmrtrsv.seller.tabcompleters.SellTabCompleter;
 import ch.tmrtrsv.seller.tabcompleters.SellerTabCompleter;
 import ch.tmrtrsv.seller.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,17 +38,17 @@ public class Seller extends JavaPlugin {
     }
 
     private void sendCredit() {
-        getLogger().info(Utils.color(""));
-        getLogger().info(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F021&#FF5301.&#FF48001"));
-        getLogger().info(Utils.color("&f Автор: &#FB3908Т&#FC2B06и&#FD1D04м&#FE0E02у&#FF0000р"));
-        getLogger().info(Utils.color("&f Телеграм: &#008DFF@&#0086FFt&#007FFFm&#0078FFr&#0071FFt&#006BFFr&#0064FFs&#005DFFv&#0056FFc&#004FFFh"));
-        getLogger().info(Utils.color(""));
+        Bukkit.getConsoleSender().sendMessage(Utils.color(""));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F021&#FF5302.&#FF48000"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f Автор: &#FB3908Т&#FC2B06и&#FD1D04м&#FE0E02у&#FF0000р"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f Телеграм: &#008DFF@&#0086FFt&#007FFFm&#0078FFr&#0071FFt&#006BFFr&#0064FFs&#005DFFv&#0056FFc&#004FFFh"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color(""));
     }
 
     private void sendNoEconomyManager() {
-        getLogger().info(Utils.color("&f Для работы плагина необходимо установить менеджер экономики"));
-        getLogger().info(Utils.color("&f Рекомендую &#FF8600E&#FF8900s&#FF8D00s&#FF9000e&#FF9400n&#FF9700t&#FF9B00i&#FF9E00a&#FFA200l&#FFA500s"));
-        getLogger().info(Utils.color(""));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f Для работы плагина необходимо установить менеджер экономики"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f Рекомендую &#FF8600E&#FF8900s&#FF8D00s&#FF9000e&#FF9400n&#FF9700t&#FF9B00i&#FF9E00a&#FFA200l&#FFA500s"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color(""));
     }
 
     private boolean setupEconomy() {
@@ -74,11 +79,13 @@ public class Seller extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommand("sell").setExecutor(new SellCommand(this));
-        this.getCommand("sell").setTabCompleter(new SellerTabCompleter(this));
-        this.getCommand("buy").setExecutor(new BuyCommand(this));
-        this.getCommand("buy").setTabCompleter(new SellerTabCompleter(this));
-        this.getCommand("seller").setExecutor(new ReloadCommand(this));
-        this.getCommand("seller").setTabCompleter(new SellerTabCompleter(this));
+        getCommand("sell").setExecutor(new SellCommand(this));
+        getCommand("sell").setTabCompleter(new SellTabCompleter(this));
+        getCommand("buy").setExecutor(new BuyCommand(this));
+        getCommand("buy").setTabCompleter(new BuyTabCompleter(this));
+        getCommand("seller").setExecutor(new ReloadCommand(this));
+        getCommand("seller").setTabCompleter(new SellerTabCompleter(this));
+        getCommand("autosell").setTabCompleter(new AutoSellTabCompleter(this));
+        getCommand("autosell").setExecutor(new AutoSellCommand(this));
     }
 }

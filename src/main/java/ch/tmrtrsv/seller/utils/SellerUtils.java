@@ -9,19 +9,19 @@ import org.bukkit.inventory.ItemStack;
 public class SellerUtils {
 
     public static ConfigurationSection getItemConfig(ConfigurationSection config, String itemName) {
-        ConfigurationSection itemsSection = config.getConfigurationSection("items");
-        if (itemsSection == null) {
+        ConfigurationSection goodsSection = config.getConfigurationSection("goods");
+        if (goodsSection == null) {
             return null;
         }
 
-        if (itemsSection.contains(itemName.toLowerCase())) {
-            return itemsSection.getConfigurationSection(itemName.toLowerCase());
+        if (goodsSection.contains(itemName.toLowerCase())) {
+            return goodsSection.getConfigurationSection(itemName.toLowerCase());
         }
 
-        for (String key : itemsSection.getKeys(false)) {
-            String name = itemsSection.getString(key + ".name");
+        for (String key : goodsSection.getKeys(false)) {
+            String name = goodsSection.getString(key + ".name");
             if (name != null && name.equalsIgnoreCase(itemName)) {
-                return itemsSection.getConfigurationSection(key);
+                return goodsSection.getConfigurationSection(key);
             }
         }
         return null;
