@@ -55,6 +55,12 @@ public class BuyCommand implements CommandExecutor {
             return true;
         }
 
+        if (!itemConfig.isSet("price.buy")) {
+            String cannotBuyMessage = plugin.getPluginConfig().getString("messages.cannot_buy_item", "Этот предмет нельзя купить.");
+            player.sendMessage(Utils.color(cannotBuyMessage.replace("{item}", itemName)));
+            return true;
+        }
+
         Material material = Material.getMaterial(itemConfig.getName().toUpperCase());
         String displayName = itemConfig.getString("name");
         double price = itemConfig.getDouble("price.buy");

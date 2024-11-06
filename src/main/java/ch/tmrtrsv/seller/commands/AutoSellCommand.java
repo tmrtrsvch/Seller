@@ -54,6 +54,12 @@ public class AutoSellCommand implements CommandExecutor {
             return true;
         }
 
+        if (!itemConfig.isConfigurationSection("price") || !itemConfig.getConfigurationSection("price").isDouble("sell")) {
+            String cannotSellMessage = plugin.getPluginConfig().getString("messages.cannot_sell_item");
+            player.sendMessage(Utils.color(cannotSellMessage.replace("{item}", itemName)));
+            return true;
+        }
+
         if (autoSellItems.containsKey(player) && autoSellItems.get(player).contains(itemName)) {
             autoSellItems.get(player).remove(itemName);
             String autoSellItemRemoved = plugin.getPluginConfig().getString("messages.autosell_item_removed");

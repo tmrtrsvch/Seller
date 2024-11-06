@@ -1,5 +1,5 @@
 #
-#              Seller v2.0
+#              Seller v2.1
 #   	      Автор: Тимур
 #   	   Телеграм: @tmrtrsvch
 #
@@ -29,10 +29,12 @@ messages:
   specify_amount: "&cПожалуйста, укажите количество предметов"
   autosell_item_removed: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fПредмет &#fff200{item} &fудалён из списка автопродажи"
   autosell_item_added: "&#FBD708&lС&#FCC307&lк&#FCAE05&lу&#FD9A04&lп&#FE8603&lщ&#FE7101&lи&#FF5D00&lк&7&l: &fПредмет &#fff200{item} &fдобавлен в список автопродажи"
+  cannot_buy_item: "&cЭтот предмет нельзя купить"
+  cannot_sell_item: "&cЭтот предмет нельзя продать"
 
 goods:
   oak_log:
-    name: "Дубовое бревно"
+    name: "Дуб"
     price:
       buy: 175
       sell: 225
@@ -50,6 +52,14 @@ goods:
     name: "Эндерняк"
     price:
       buy: 225
+      sell: 175
+  stone: # Данный товар(предмет) можно только купить
+    name: "Камень"
+    price:
+      buy: 225
+  birch_wood: # Данный товар(предмет) можно только продать
+    name: "Берёза"
+    price:
       sell: 175
 
 autosell-delay: 30  # Задержка автопродажи в секундах

@@ -1,5 +1,5 @@
 name: Seller
-version: 2.0
+version: 2.1
 main: ch.tmrtrsv.seller.Seller
 depend: [ Vault ]
 api-version: 1.16

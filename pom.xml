@@ -6,7 +6,7 @@
 
   <groupId>ch.tmrtrsv</groupId>
   <artifactId>Seller</artifactId>
-  <version>v2.0</version>
+  <version>v2.1</version>
   <packaging>jar</packaging>
 
   <name>Seller</name>

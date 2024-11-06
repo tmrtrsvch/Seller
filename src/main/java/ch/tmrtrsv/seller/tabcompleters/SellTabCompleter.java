@@ -48,6 +48,10 @@ public class SellTabCompleter implements TabCompleter {
         int mode = plugin.getConfig().getInt("tab-completer.goods.mode", 1);
 
         for (String itemKey : items) {
+            if (!itemsSection.isSet(itemKey + ".price.sell")) {
+                continue;
+            }
+
             if (mode == 1) {
                 suggestions.add(itemKey.toLowerCase());
             } else if (mode == 2) {

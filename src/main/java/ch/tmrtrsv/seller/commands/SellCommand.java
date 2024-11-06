@@ -47,6 +47,12 @@ public class SellCommand implements CommandExecutor {
             return true;
         }
 
+        if (!itemConfig.isSet("price.sell")) {
+            String cannotSellMessage = plugin.getPluginConfig().getString("messages.cannot_sell_item", "Этот предмет нельзя продать.");
+            player.sendMessage(Utils.color(cannotSellMessage.replace("{item}", itemName)));
+            return true;
+        }
+
         Material material = Material.getMaterial(itemConfig.getName().toUpperCase());
         if (material == null) {
             String itemNotFoundMessage = plugin.getPluginConfig().getString("messages.item_not_found", "Item не найден.");
