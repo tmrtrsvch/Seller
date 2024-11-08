@@ -39,7 +39,7 @@ public class Seller extends JavaPlugin {
 
     private void sendCredit() {
         Bukkit.getConsoleSender().sendMessage(Utils.color(""));
-        Bukkit.getConsoleSender().sendMessage(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F021&#FF5302.&#FF48000"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F022&#FF5302.&#FF48001"));
         Bukkit.getConsoleSender().sendMessage(Utils.color("&f Автор: &#FB3908Т&#FC2B06и&#FD1D04м&#FE0E02у&#FF0000р"));
         Bukkit.getConsoleSender().sendMessage(Utils.color("&f Телеграм: &#008DFF@&#0086FFt&#007FFFm&#0078FFr&#0071FFt&#006BFFr&#0064FFs&#005DFFv&#0056FFc&#004FFFh"));
         Bukkit.getConsoleSender().sendMessage(Utils.color(""));

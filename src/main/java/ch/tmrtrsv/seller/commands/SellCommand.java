@@ -65,6 +65,12 @@ public class SellCommand implements CommandExecutor {
 
         int sellQuantity;
 
+        if (args.length < 2) {
+            String specifyAmountMessage = plugin.getPluginConfig().getString("messages.specify_amount", "Пожалуйста, укажите количество предметов.");
+            player.sendMessage(Utils.color(specifyAmountMessage));
+            return true;
+        }
+
         if (args[1].equalsIgnoreCase("all")) {
             sellQuantity = SellerUtils.countItem(player, material);
             if (sellQuantity == 0) {

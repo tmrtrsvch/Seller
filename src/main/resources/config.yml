@@ -36,8 +36,8 @@ goods:
   oak_log:
     name: "Дуб"
     price:
-      buy: 175
-      sell: 225
+      buy: 225
+      sell: 175
   cobblestone:
     name: "Булыжник"
     price:
