@@ -54,7 +54,7 @@ public class AutoSellCommand implements CommandExecutor {
             return true;
         }
 
-        if (!itemConfig.isConfigurationSection("price") || !itemConfig.getConfigurationSection("price").isDouble("sell")) {
+        if (!itemConfig.isConfigurationSection("price") || !itemConfig.getConfigurationSection("price").isSet("sell")) {
             String cannotSellMessage = plugin.getPluginConfig().getString("messages.cannot_sell_item");
             player.sendMessage(Utils.color(cannotSellMessage.replace("{item}", itemName)));
             return true;
@@ -85,7 +85,7 @@ public class AutoSellCommand implements CommandExecutor {
                     for (String itemName : items) {
                         ConfigurationSection itemConfig = SellerUtils.getItemConfig(plugin.getPluginConfig(), itemName);
 
-                        if (itemConfig == null) continue;
+                        if (itemConfig == null || !itemConfig.isSet("price.sell")) continue;
 
                         Material material = Material.getMaterial(itemConfig.getName().toUpperCase());
                         if (material == null) continue;
