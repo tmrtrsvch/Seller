@@ -1,5 +1,5 @@
 #
-#              Seller v2.1
+#              Seller v2.2
 #   	      Автор: Тимур
 #   	   Телеграм: @tmrtrsvch
 #
@@ -8,9 +8,11 @@
 # /autosell <предмет> (seller.autosell) - Поставить/снять предмет с авто-продажи
 # /seller reload (seller.reload) - Перезагрузить конфигурацию
 #
+# %seller_autosell_<товар>% - Добавлен ли предмет в авто-продажу
+#
 
 #             Зависимости:
-# Для работы плагина необходимо установить Vault
+# Для работы плагина необходимо установить Vault, PlaceholderAPI
 # И любой плагин на экономику(например, Essentials)
 #
 
@@ -75,3 +77,7 @@ tab-completer:
       - 2
       - 3
       - 4
+
+autosell_placeholder:
+  enabled: "&aДа"
+  disabled: "&cНет"

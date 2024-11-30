@@ -1,7 +1,8 @@
 name: Seller
-version: 2.1
+version: 2.2
 main: ch.tmrtrsv.seller.Seller
 depend: [ Vault ]
+softdepend: [ PlaceholderAPI ]
 api-version: 1.16
 authors: [ Тимур ]
 website: t.me/tmrtrsvch

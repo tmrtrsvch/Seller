@@ -102,10 +102,15 @@ public class AutoSellCommand implements CommandExecutor {
                             player.sendMessage(Utils.color(sellMessage.replace("{item}", itemConfig.getString("name"))
                                     .replace("{price}", String.valueOf(totalPrice))
                                     .replace("{amount}", String.valueOf(itemCount))));
+
                         }
                     }
                 }
             }
         }.runTaskTimer(plugin, delay, delay);
+    }
+
+    public Set<String> getAutoSellItemsForPlayer(Player player) {
+        return autoSellItems.getOrDefault(player, new HashSet<>());
     }
 }

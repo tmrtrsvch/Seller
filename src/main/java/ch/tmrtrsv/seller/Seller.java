@@ -4,16 +4,20 @@ import ch.tmrtrsv.seller.commands.AutoSellCommand;
 import ch.tmrtrsv.seller.commands.BuyCommand;
 import ch.tmrtrsv.seller.commands.ReloadCommand;
 import ch.tmrtrsv.seller.commands.SellCommand;
+import ch.tmrtrsv.seller.placeholders.AutoSellPlaceholder;
 import ch.tmrtrsv.seller.tabcompleters.AutoSellTabCompleter;
 import ch.tmrtrsv.seller.tabcompleters.BuyTabCompleter;
 import ch.tmrtrsv.seller.tabcompleters.SellTabCompleter;
 import ch.tmrtrsv.seller.tabcompleters.SellerTabCompleter;
 import ch.tmrtrsv.seller.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
+
+import java.util.Set;
 
 public class Seller extends JavaPlugin {
 
@@ -29,6 +33,7 @@ public class Seller extends JavaPlugin {
         }
         this.loadConfig();
         this.registerCommands();
+        this.registerPlaceholders();
         this.sendCredit();
     }
 
@@ -39,7 +44,7 @@ public class Seller extends JavaPlugin {
 
     private void sendCredit() {
         Bukkit.getConsoleSender().sendMessage(Utils.color(""));
-        Bukkit.getConsoleSender().sendMessage(Utils.color("&f &#FBB908S&#FBAE07e&#FCA206l&#FC9706l&#FD8C05e&#FD8104r &#FE6A02v&#FE5F02&#FF5302.&#FF48001"));
+        Bukkit.getConsoleSender().sendMessage(Utils.color("&f &#FF4400Seller v2.2"));
         Bukkit.getConsoleSender().sendMessage(Utils.color("&f Автор: &#FB3908Т&#FC2B06и&#FD1D04м&#FE0E02у&#FF0000р"));
         Bukkit.getConsoleSender().sendMessage(Utils.color("&f Телеграм: &#008DFF@&#0086FFt&#007FFFm&#0078FFr&#0071FFt&#006BFFr&#0064FFs&#005DFFv&#0056FFc&#004FFFh"));
         Bukkit.getConsoleSender().sendMessage(Utils.color(""));
@@ -64,6 +69,14 @@ public class Seller extends JavaPlugin {
         return this.economy != null;
     }
 
+    private void registerPlaceholders() {
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new AutoSellPlaceholder(this).register();
+        } else {
+            Bukkit.getConsoleSender().sendMessage(Utils.color("&cPlaceholderAPI не найден! Плейсхолдеры не будут работать."));
+        }
+    }
+
     private void loadConfig() {
         this.saveDefaultConfig();
         this.reloadConfig();
@@ -76,6 +89,10 @@ public class Seller extends JavaPlugin {
 
     public FileConfiguration getPluginConfig() {
         return config;
+    }
+
+    public Set<String> getAutoSellItemsForPlayer(Player player) {
+        return ((AutoSellCommand) getCommand("autosell").getExecutor()).getAutoSellItemsForPlayer(player);
     }
 
     private void registerCommands() {
